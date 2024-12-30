@@ -1,3 +1,16 @@
+# GASP-ALS fork by Yossi40-100
+This is a GASP-ALS fork.
+
+## License
+
+[UE-Only Content - Licensed for Use Only with Unreal Engine-based Products](https://www.unrealengine.com/en-US/eula/content)
+
+This is the same as the original
+
+
+## Original information
+Below is the original readme
+
 # Game Animation Sample with Overlay Layering
 
 ## Introduction
