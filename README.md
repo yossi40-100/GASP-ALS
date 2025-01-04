@@ -1,15 +1,46 @@
 # GASP-ALS fork by Yossi40-100
-This is a GASP-ALS fork.
+This is a GASP-ALS fork.  
+これはGASP-ALSから派生したものです。
+
+## Features
+### Hand-IKを調整
+https://youtu.be/TXwtCx30DwY  
+Propsに持ち手の位置情報を追加し、その位置に手を合わせます。  
+リターゲットキャラクターにも持ち手位置を正確に補正するため、リターゲット後に補正する形に変更しました。
+ABPを汎用のものから個別に変更し、スケルタルメッシュ情報を参照できるようにしています。
+
+オーバーレイアニメーションでEnable_HandIK_L または _Rが1のカーブが追加されている場合かつ、
+DoingTraversalActionフラグがoffのときのみ補正されます。
+
+スケルタルメッシュはLHGrip、RHGripという名前で左手・右手位置用のソケットを追加します。
+スタティックメッシュは直接ソケットを追加できないため、ブループリント化してシーンコンポーネントを追加します。
+スケルタルメッシュも（どのみち銃の発射などの処理を実装したいため、）ブループリント化し、
+BPI_ItemインターフェースにてCBP_SandboxCharacterにソケット情報を提供する作りとしています。
+
+#### English
+Add the position information of the handles to the Props and align the hands to that position.  
+Changed to compensate after retargeting in order to accurately compensate for handle position even for retargeted characters.
+ABP is changed from generic to individual so that skeletal mesh information can be referenced.
+
+When a curve with Enable_HandIK_L/_R of 1 is added in the overlay animation,
+The correction is made only when the flag is off "DoingTraversalAction".
+
+Skeletal meshes add sockets for left and right hand positions named LHGrip and RHGrip.
+Static meshes cannot add sockets directly, so they are blueprinted and scene components are added.
+Blueprint the skeletal mesh as well (since we want to implement processes such as gun firing anyway),
+The BPI_Item interface provides socket information to CBP_SandboxCharacter.
 
 ## License
 
-[UE-Only Content - Licensed for Use Only with Unreal Engine-based Products](https://www.unrealengine.com/en-US/eula/content)
+[UE-Only Content - Licensed for Use Only with Unreal Engine-based Products](https://www.unrealengine.com/en-US/eula/content)  
+UnrealEngine上でしか使えないアセットを含むため、本リポジトリの内容物もすべてその扱いとなります。
 
 This is the same as the original
 
 
 ## Original information
-Below is the original readme
+Below is the original readme  
+以下はオリジナル（Fork元の情報です）
 
 # Game Animation Sample with Overlay Layering
 
