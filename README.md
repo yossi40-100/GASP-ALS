@@ -3,6 +3,26 @@ This is a GASP-ALS fork.
 これはGASP-ALSから派生したものです。
 
 ## Features
+### NPCと戦えるように
+https://youtu.be/HemUhKjy-Bw
+
+マニーをベースにビヘイビアツリー制御の敵キャラを作成
+
+overlay_stateでライフルかピストルを選ぶと攻撃できる
+
+- TODO: エイムの方向がまだあってないのでこちらから動かなきゃそうやられない
+- TODO: なんか近いと攻撃が当たらない不具合あり
+
+発見時の「！」音は、効果音ラボ様 決定ボタンを押す13
+
+#### English
+Create a behavior tree controlled enemy character based on Manny.
+
+Select rifle or pistol in overlay_state to attack.
+
+- TODO: Aim direction is still not right, so you have to move to avoid being hit.
+- TODO: There is a bug that attacks don't hit if you are too close.
+
 ### Hand-IKを調整
 https://youtu.be/TXwtCx30DwY  
 Propsに持ち手の位置情報を追加し、その位置に手を合わせます。  
