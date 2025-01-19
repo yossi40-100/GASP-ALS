@@ -4,13 +4,14 @@ This is a GASP-ALS fork.
 
 ## Features
 ### FPSカメラ追加
+https://youtu.be/gOz7RRNOJY0
 
 1キーと左ボタンにFPSモード切り替え機能を追加しました。
 
 GamePlay Cameraとそのプラグイン仕様を廃止し、UE5.4仕様の復刻（動作不安定の実験的機能のため）
 ゲームパッドのアサインを変更しました。Controlsウィジェット参照。
 
-- Xでファイヤー　（ラグドールはゲームパッドからは削除）
+- 右トリガーでファイヤー
 - Y＋上下でオーバーレイ選択
 - 左でFPS/TPS
 - 右でキャラクター変更
@@ -21,7 +22,7 @@ Added FPS mode switching functionality to the 1 key and left button.
 Eliminated GamePlay Camera and its plugin spec, reverting to UE5.4 spec (for experimental features with unstable operation).
 
 Changed gamepad assignments, see Controls widget.
-- X to fire (ragdolls removed from gamepad)
+- Right Trigger to fire
 - Y + D-pad up/down for overlay selection
 - D-pad Left for FPS/TPS
 - D-pad Right to change character
@@ -29,13 +30,14 @@ Changed gamepad assignments, see Controls widget.
 
 ### NPCと戦えるように
 https://youtu.be/HemUhKjy-Bw
+https://yossi40-100.com/ue5gasp4/
+
 
 マニーをベースにビヘイビアツリー制御の敵キャラを作成
 
 overlay_stateでライフルかピストルを選ぶと攻撃できる
 
 - TODO: エイムの方向がまだあってないのでこちらから動かなきゃそうやられない
-- TODO: なんか近いと攻撃が当たらない不具合あり
 
 発見時の「！」音は、効果音ラボ様 決定ボタンを押す13
 
@@ -49,6 +51,8 @@ Select rifle or pistol in overlay_state to attack.
 
 ### Hand-IKを調整
 https://youtu.be/TXwtCx30DwY  
+https://yossi40-100.com/ue5gaspals2/
+
 Propsに持ち手の位置情報を追加し、その位置に手を合わせます。  
 リターゲットキャラクターにも持ち手位置を正確に補正するため、リターゲット後に補正する形に変更しました。
 ABPを汎用のものから個別に変更し、スケルタルメッシュ情報を参照できるようにしています。
