@@ -3,6 +3,29 @@ This is a GASP-ALS fork.
 これはGASP-ALSから派生したものです。
 
 ## Features
+### Prone状態追加
+https://youtu.be/kBXotVnTXFg
+https://youtu.be/2t0p_avIEEA
+https://youtu.be/dzBPIvb3-vo
+https://youtu.be/g5TUcB72lCE
+
+Cキー長押しで伏せProne状態を追加しました。
+必要な高さがないと起き上がれないようにしてあります。
+
+- TODO: 武器のエイムオフセット（上下）
+- TODO: コリジョンが小さいので壁にめり込みます
+- TODO: 横や後ろなどアニメの充実化
+
+#### English
+A prone state has been added with a long press of the C key.
+
+It is not possible to get up without the required height.
+
+- TODO: Aim offset for weapons (up/down) 
+- TODO: Collision is too small so it will drown in the wall 
+- TODO: Enhanced animations such as side, back, etc.
+
+
 ### FPSカメラ追加
 https://youtu.be/gOz7RRNOJY0
 
