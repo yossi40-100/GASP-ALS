@@ -3,6 +3,36 @@ This is a GASP-ALS fork.
 これはGASP-ALSから派生したものです。
 
 ## Features
+### Slotによるモンタージュ再生ができない問題を修正
+https://youtu.be/XPHdReRM_BY
+
+ALSのコア部分をABP_SandboxCharacterにお引越し。
+
+サンプルとしてLyraのPistolのアニメーションを使いたかったが銃のスケルトンが異なるのでPistolごと移植しM9と置き換えた。
+
+UpperBody Slotも利用可能にした。
+
+Hand-IKを同じカーブの値で上書きできなかったので、Ignore_HandIKという新しい名前のカーブを用意して、手動で打ち消す処理とした
+
+TODO: リターゲットキャラのHand-IK対応（UE5マニーだけやってある）
+TODO: 新しいマガジンを左手に持ててない
+
+
+#### English
+Moved the core part of ALS to ABP_SandboxCharacter.
+
+I wanted to use Lyra's Pistol animation as a sample, but the skeleton of the gun was different, so I ported the whole Pistol and replaced it with M9.
+
+UpperBody Slot was also made available.
+
+Hand-IK could not be overwritten with the same curve value, so a new curve named Ignore_HandIK was created to manually override it.
+
+TODO: Hand-IK support for retargeted characters (only UE5 Manny has done this) 
+TODO: I can't hold the new magazine in my left hand.
+
+Translated with DeepL.com (free version)
+
+
 ### Prone状態追加
 https://youtu.be/kBXotVnTXFg
 https://youtu.be/2t0p_avIEEA
