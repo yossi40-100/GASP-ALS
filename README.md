@@ -1,8 +1,22 @@
 # GASP-ALS fork by Yossi40-100
-This is a GASP-ALS fork.  
-これはGASP-ALSから派生したものです。
+これはGASP-ALSから派生しシューター化したものです。  
+This is a derivative of the GASP-ALS and is a shooter.
+
+https://yossi40-100.com/category/game/unrealengine/ue5gasp/
 
 ## Features
+### インタラクションでとって装備できる武器を作成
+https://youtu.be/wWzzEkMiqBc
+
+武器などのアイテムを地面から拾って装備などができる仕組み BP_Pickup を作成しました。
+IA_Interact（Eキー）で動作します
+
+#### English
+Create a weapon that can be picked up and equipped by interaction 
+
+BP_Pickup is a mechanism for picking up weapons and other items from the ground and equipping them.
+It works with IA_Interact (E key).
+
 ### Slotによるモンタージュ再生ができない問題を修正
 https://youtu.be/XPHdReRM_BY
 
@@ -29,8 +43,6 @@ Hand-IK could not be overwritten with the same curve value, so a new curve named
 
 TODO: Hand-IK support for retargeted characters (only UE5 Manny has done this) 
 TODO: I can't hold the new magazine in my left hand.
-
-Translated with DeepL.com (free version)
 
 
 ### Prone状態追加
