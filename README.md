@@ -5,6 +5,24 @@ This is a derivative of the GASP-ALS and is a shooter.
 https://yossi40-100.com/category/game/unrealengine/ue5gasp/
 
 ## Features
+### カバーシステムを追加
+https://youtu.be/mRV0O7LGwZ4
+
+壁に背を向けてくっつくカバーシステムを追加しました。
+- 暫定で壁の近くでFキーを押すと張り付き／張り付き解除（キーアサインを決めてない）
+- 張り付いた状態でエイムキーで壁から飛び出し／戻り
+- アニメーションはMixamoベースでレベルシーケンスで編集したもの
+
+TODO: いろいろあり（カバーのままトラバースできちゃうなど）
+
+#### English
+Added a cover system that sticks against a wall.
+- Tentatively, press F key near a wall to stick/unstick (key assignment not determined).
+- Aim key to pop out of/back to the wall while attached.
+- Animations are Mixamo based and edited in level sequence
+
+TODO: Various (e.g., can traverse while in cover)
+
 ### インタラクションでとって装備できる武器を作成
 https://youtu.be/wWzzEkMiqBc
 
