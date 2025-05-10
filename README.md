@@ -6,6 +6,21 @@ https://yossi40-100.com/category/game/unrealengine/ue5gasp/
 
 ## Features
 
+### SandboxCharacterからカメラとプレイヤー操作を分離
+少しでも処理負荷下げたり派生開発しやすくなるかなと思い、機能のモジュール化に着手しました。
+
+
+CBP_RetargetPlayerBase を作成し、そこに入力処理とカメラを移動しました。
+
+AIは今まで通りSandboxCharacterを継承すれば、カメラなどの無駄がなくなります。
+プレイヤーキャラはCBP_RetargetPlayerBaseをベースにすれば今まで通りのことができつつ、
+私の変更を取り込みやすくなるかもしれませｎ。
+
+CBP_SandboxCharacterは直接操作できなくなりました。
+→ 個人的には問題ないですが、一応その代わりとなる CBP_DummyUEFN を用意しました。  
+リターゲットキャラ用のCBPで隠れているMeshを表示させているのでほぼもとのSandboxCharacterと同じ。
+
+
 ### 一通りのInputActionを登録
  デバッグキーをIA_**で一通り登録しました。  
 これにより、本体を改造する必要がない場合は、IMC_Sandboxだけで自分の好みのキーアサインに置き換え可能になるはずです。
