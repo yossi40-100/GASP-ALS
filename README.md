@@ -5,6 +5,63 @@ This is a derivative of the GASP-ALS and is a shooter.
 https://yossi40-100.com/category/game/unrealengine/ue5gasp/
 
 ## Features
+
+### 一通りのInputActionを登録
+ デバッグキーをIA_**で一通り登録しました。  
+これにより、本体を改造する必要がない場合は、IMC_Sandboxだけで自分の好みのキーアサインに置き換え可能になるはずです。
+※ MetaHuman用の数字キーは除く
+
+それにともないゲームパッドのキーアサインを一部見直しました。
+詳しくは Widgets/Controls に記載 ＆ ブログで
+
+
+### 持ち手のHand-IK方法を大幅変更
+overlay_xxのアイテムごとのソケットをやめ、hand_l_socket, hand_r_socketに統一し、
+そこからのオフセットを追加の変数で管理するようにしました。
+これにより、スケルトンが共通でもキャラごとに設定値を変えることができるようになりました。  
+
+結果的にキャラ個別のABPでリターゲット後に再度Two-Bone IKで補正する必要もなくなり、
+ABP_GenericRetargetに再統一しました。
+
+さらに、ABP_GenericRetarget内で持っていたIKRetargeterのMapを廃止し、CBPからセットする仕様に変更しました  
+これにより、ABP_GenericRetargetは基本的に触る必要がなくなり、CBPでキャラごとの設定が可能になりました。
+
+
+ついでに、コンストラクションスクリプトに位置調整用のデバッグ処理を追加しました。
+
+#### オーバーレイアイテム持ち手位置調整方法
+adjustMode フラグをオンにして、追加した OverlayOffset 変数のフラグをオンにすると、
+コンストラクションスクリプトにより、そのアイテムをビューポート上のキャラが持ってエイム姿勢になります
+この状態で変数の値を変えると表示も更新されます。
+
+- OverlayOffset
+-- .main: hand_r_socketからのオフセット 位置と回転が調整可能
+-- .hand_ik: Item側のBPのLHGrip／RHGripからのオフセット トランスフォーム型だが、現在位置のみが補正可能
+-- .adjustPos: 調整したいアイテムにチェックをつける （1つだけチェックつけること。複数つけるとForの都合一番下のが選ばれるよ）
+
+注意：adjustModeを有効にしたまま保存するとコンストラクションスクリプトなのでレベル上の該当クラスのアクターすべてに影響します
+
+
+### その他 貯めていた細かい改善をまとめて実施
+
+- GameplayCamerasの変数がないエラーメッセージが大量に出ているのでウィジェットから該当の選択を削除し抑制
+```
+LogBlueprintUserMessages: Warning: Failed to find console variable 'GameplayCameras.Debug.Enable'.
+```
+
+- Lyraの減衰設定などの同期漏れ追加 と SFXクラスをエンジンのものに割り当てなおした
+- FPS/TPS視点時のカメラアームの親を、常にeyeソケットではなく、FPS視点時のみ切り替え時に取り付けなおす仕様に変更
+-- TPS視点時に壁に埋もれるGASPの制限の影響で、トラバーサル時やカバー時に映像がクリッピングする問題の改善
+- FPS視点時にストレイフモードじゃないと体と目線が不一致になる（目線カメラなはずが目が真後ろまで回る）のを改善
+- 双眼鏡の立ちのエイムだけHand-IKが効かないGASP-ALSのバグを修正
+
+#### 備考
+- 最近本家GASP-ALSリポジトリがアップデートされましたが、追従しません。
+GamePlay CameraでのFPS視点追加などで、当リポジトリではすでに廃止済で追従メリットが現状ないので。
+
+- 英訳も併記していましたが、ブラウザの翻訳などで十分だと思うので消しました。（当初想定より記載が膨れたため）
+
+
 ### カバーシステムを追加
 https://youtu.be/mRV0O7LGwZ4
 
@@ -15,13 +72,6 @@ https://youtu.be/mRV0O7LGwZ4
 
 TODO: いろいろあり（カバーのままトラバースできちゃうなど）
 
-#### English
-Added a cover system that sticks against a wall.
-- Tentatively, press F key near a wall to stick/unstick (key assignment not determined).
-- Aim key to pop out of/back to the wall while attached.
-- Animations are Mixamo based and edited in level sequence
-
-TODO: Various (e.g., can traverse while in cover)
 
 ### インタラクションでとって装備できる武器を作成
 https://youtu.be/wWzzEkMiqBc
@@ -29,11 +79,6 @@ https://youtu.be/wWzzEkMiqBc
 武器などのアイテムを地面から拾って装備などができる仕組み BP_Pickup を作成しました。
 IA_Interact（Eキー）で動作します
 
-#### English
-Create a weapon that can be picked up and equipped by interaction 
-
-BP_Pickup is a mechanism for picking up weapons and other items from the ground and equipping them.
-It works with IA_Interact (E key).
 
 ### Slotによるモンタージュ再生ができない問題を修正
 https://youtu.be/XPHdReRM_BY
@@ -50,19 +95,6 @@ TODO: リターゲットキャラのHand-IK対応（UE5マニーだけやって�
 TODO: 新しいマガジンを左手に持ててない
 
 
-#### English
-Moved the core part of ALS to ABP_SandboxCharacter.
-
-I wanted to use Lyra's Pistol animation as a sample, but the skeleton of the gun was different, so I ported the whole Pistol and replaced it with M9.
-
-UpperBody Slot was also made available.
-
-Hand-IK could not be overwritten with the same curve value, so a new curve named Ignore_HandIK was created to manually override it.
-
-TODO: Hand-IK support for retargeted characters (only UE5 Manny has done this) 
-TODO: I can't hold the new magazine in my left hand.
-
-
 ### Prone状態追加
 https://youtu.be/kBXotVnTXFg
 https://youtu.be/2t0p_avIEEA
@@ -76,16 +108,6 @@ Cキー長押しで伏せProne状態を追加しました。
 - TODO: コリジョンが小さいので壁にめり込みます
 - TODO: 横や後ろなどアニメの充実化
 
-#### English
-A prone state has been added with a long press of the C key.
-
-It is not possible to get up without the required height.
-
-- TODO: Aim offset for weapons (up/down) 
-- TODO: Collision is too small so it will drown in the wall 
-- TODO: Enhanced animations such as side, back, etc.
-
-
 ### FPSカメラ追加
 https://youtu.be/gOz7RRNOJY0
 
@@ -98,17 +120,6 @@ GamePlay Cameraとそのプラグイン仕様を廃止し、UE5.4仕様の復刻
 - Y＋上下でオーバーレイ選択
 - 左でFPS/TPS
 - 右でキャラクター変更
-
-#### English
-Added FPS mode switching functionality to the 1 key and left button.
-
-Eliminated GamePlay Camera and its plugin spec, reverting to UE5.4 spec (for experimental features with unstable operation).
-
-Changed gamepad assignments, see Controls widget.
-- Right Trigger to fire
-- Y + D-pad up/down for overlay selection
-- D-pad Left for FPS/TPS
-- D-pad Right to change character
 
 
 ### NPCと戦えるように
@@ -124,13 +135,6 @@ overlay_stateでライフルかピストルを選ぶと攻撃できる
 
 発見時の「！」音は、効果音ラボ様 決定ボタンを押す13
 
-#### English
-Create a behavior tree controlled enemy character based on Manny.
-
-Select rifle or pistol in overlay_state to attack.
-
-- TODO: Aim direction is still not right, so you have to move to avoid being hit.
-- TODO: There is a bug that attacks don't hit if you are too close.
 
 ### Hand-IKを調整
 https://youtu.be/TXwtCx30DwY  
@@ -148,18 +152,6 @@ DoingTraversalActionフラグがoffのときのみ補正されます。
 スケルタルメッシュも（どのみち銃の発射などの処理を実装したいため、）ブループリント化し、
 BPI_ItemインターフェースにてCBP_SandboxCharacterにソケット情報を提供する作りとしています。
 
-#### English
-Add the position information of the handles to the Props and align the hands to that position.  
-Changed to compensate after retargeting in order to accurately compensate for handle position even for retargeted characters.
-ABP is changed from generic to individual so that skeletal mesh information can be referenced.
-
-When a curve with Enable_HandIK_L/_R of 1 is added in the overlay animation,
-The correction is made only when the flag is off "DoingTraversalAction".
-
-Skeletal meshes add sockets for left and right hand positions named LHGrip and RHGrip.
-Static meshes cannot add sockets directly, so they are blueprinted and scene components are added.
-Blueprint the skeletal mesh as well (since we want to implement processes such as gun firing anyway),
-The BPI_Item interface provides socket information to CBP_SandboxCharacter.
 
 ## License
 
