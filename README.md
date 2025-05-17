@@ -2,11 +2,15 @@
 これはGASP-ALSから派生しシューター化したものです。  
 This is a derivative of the GASP-ALS and is a shooter.
 
-https://yossi40-100.com/category/game/unrealengine/ue5gasp/
+- https://yossi40-100.com/category/game/unrealengine/ue5gasp/
+- https://yossi40-100.com/gasp-als-doc-2/
 
 ## Features
 
 ### カバー状態の課題を改修
+- https://youtu.be/6LR9CCx5EI0
+- https://yossi40-100.com/gasp-als-cover-2/
+
 1. 後ろ向きからカバーに入ると体の向きや首のエイムがおかしくなる問題を修正
 　※ 後ろ向きからカバーに入る機能そのものはつけていません
 2. カバー突入から解除までが一瞬の場合に位置やカプセルサイズがおかしくなる問題を修正
