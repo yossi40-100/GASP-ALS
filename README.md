@@ -6,6 +6,14 @@ This is a derivative of the GASP-ALS and is a shooter.
 - https://yossi40-100.com/gasp-als-doc-2/
 
 ## Features
+### バグFix
+- Pistol2Hや落下中に下向きに撃った場合など、弾が自分にHit判定して自爆する問題をInstigatorを使って回避するよう修正しました
+- Hand-IKで補正するときの基準位置にMainMeshを渡していたが、これだとMetahumanで補正が効かない問題があり、本体Meshの参照に置き換えました
+-- 既存のオフセット変数を再設定する必要あり
+
+### 弓矢システム追加
+モンタージュ再生ができるようになったので、弓から矢を射る仕組みを作成
+
 ### 制限緩和・仕様変更
 1. スプリント中にエイムできない制限を解除
 2. エイム解除に最短0.75秒かかる制限を解除
